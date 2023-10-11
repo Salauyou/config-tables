@@ -47,7 +47,7 @@ class TablesPasteProvider : PasteProvider {
         if (elementOnCaret is PsiWhiteSpace) {
             elementOnCaret = file.findElementAt(elementOnCaret.endOffset)
         }
-        if (elementOnCaret?.text == "|") {
+        if (elementOnCaret.isPipe()) {
             endWithPipe = false
         }
         val pasteText = StringBuilder()
