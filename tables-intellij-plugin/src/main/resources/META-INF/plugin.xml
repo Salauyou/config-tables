@@ -1,0 +1,27 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+  <id>de.config-tables.tables</id>
+  <name>Tables</name>
+  <vendor email="alexander.soloviev@db.com"/>
+  <description>The plugin helps to create and manage Tables files</description>
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <fileType name="Tables" language="Tables" extensions="table;tables" fieldName="INSTANCE" implementationClass="de.configtables.intellij.TablesFileType"/>
+    <lang.syntaxHighlighter language="Tables" implementationClass="de.configtables.intellij.editor.TablesHighlighter"/>
+    <lang.parserDefinition language="Tables" implementationClass="de.configtables.intellij.psi.TablesParserDefinition"/>
+    <lang.formatter language="Tables" implementationClass="de.configtables.intellij.formatter.TablesFormattingModelBuilder"/>
+    <completion.contributor language="Tables" implementationClass="de.configtables.intellij.editor.TablesCompletionContributor"/>
+    <typedHandler implementation="de.configtables.intellij.editor.PipeTypedHandler"/>
+    <customPasteProvider implementation="de.configtables.intellij.editor.TablesPasteProvider" />
+    <breadcrumbsInfoProvider implementation="de.configtables.intellij.editor.TablesBreadcrumbsProvider" />
+  </extensions>
+
+  <actions>
+    <action id="de.configtables.tables.clipboard.CopyAsTableAction"
+            class="de.configtables.intellij.editor.CopyAsTableAction" text="Copy as Table"
+            description="Copy to clipboard as tab-separated/HTML table">
+      <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="$Copy"/>
+    </action>
+  </actions>
+</idea-plugin>

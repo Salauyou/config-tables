@@ -1,0 +1,131 @@
+{
+  "type": "object",
+  "properties": {
+    "Table": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_$]+$"
+        },
+        "Key": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_$]+$"
+          }
+        },
+        "Target": {
+          "type": "string",
+          "pattern": "^[a-z]+$"
+        },
+        "Generated": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "propertyNames": {
+              "pattern": "^[a-zA-Z0-9_$]+$"
+            },
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "Dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_$]+$"
+          }
+        },
+        "Lookups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "propertyNames": {
+              "pattern": "^[a-zA-Z0-9_$]+$"
+            },
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "Ignored": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_$]+$"
+          }
+        },
+        "Rows": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "propertyNames": {
+                  "pattern": "^[a-zA-Z0-9_$]+$"
+                },
+                "additionalProperties": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [ "Name", "Key", "Rows" ]
+    },
+    "Script": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "Sql": {
+              "type": "string"
+            },
+            "Run": {
+              "type": "string",
+              "enum": [
+                "always",
+                "none",
+                "changed"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "File": {
+              "type": "string",
+              "pattern": "[-/._a-zA-Z0-9].sql"
+            },
+            "Run": {
+              "type": "string",
+              "enum": [
+                "always",
+                "none",
+                "changed"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

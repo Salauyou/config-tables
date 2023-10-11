@@ -1,0 +1,28 @@
+# line comment
+#line comment
+| header            |
+| not   comment     |
+| not#  comment     |
+| not## comment     |
+| not###comment     |
+| not comment#      |
+| not comment##     |
+| not comment###    |
+| has comment # comment
+| has comment ### comment
+| has comment# # comment
+| has comment## ## comment
+##line comment
+###line comment
+| "not # comment #" |
+| "# not # comment" |
+| "has comment"#comment
+| "has comment" #comment
+| "has comment"##comment
+| not'#comment      |
+| not   "#comment   |
+| not ""#comment    |
+| not """#comment   |
+| not"#comment      |
+| not''quoted text' #comment
+|                   |

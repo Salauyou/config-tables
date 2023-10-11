@@ -1,0 +1,34 @@
+| header                |
+| "quoted text"         |
+|   "quoted\t \ntext"   |
+| "quoted\u0020 text"   |
+|    not" quoted text   |
+|   n "ot" quoted       |
+| " q uoted text  "     |
+| not"quoted""text      |
+| not quoted"""text     |   # quotes in middle treated as text
+|   'quoted text'       |
+| 'quoted ''text'       |   # escaped '
+| not'quoted text       |   # quote in middle treated as text
+| 'quoted # no comment' |
+| 'missing close quote  |   # missing close quote: error
+|  "missing \" close quote  # missing close quote: error
+| "\u0032\u0020\u00AA\u0050"
+|   '-$%^&*| |  || '
+|   "-$%^&*| |  || "
+|   '\n\t\b\f\\\"text'      # escape sequences treated literally
+|   "\n\t\b\f\\\"text"      # escape sequences got unescaped
+|      ""               |   # empty text
+|     ''                |   # empty text
+| '             '       |   # only spaces
+| "             "       |   # only spaces
+|"quoted text"|
+|'quoted text'|
+|not quoted|
+|n|
+|n"|
+|n'|
+|"n"|
+|'n'|
+||
+|                       |

@@ -1,0 +1,18 @@
+| LOCATION         | PRODUCT_TYPE       | CURRENCY | CLIENT_TYPE | CLIENT_ACCOUNT | AGGREGATE_ACCOUNT |
+# JIRA-1122
+| Europe/Berlin    | FIXED_RATE_DEPOSIT | *        | *           | *              | DE-FD             |
+| Europe/Berlin    | FLOAT_RATE_DEPOSIT | *        | *           | *              | DE-FL             |  #separate acc for float-rate
+| Europe/Frankfurt | FIXED_RATE_DEPOSIT | *        | *           | *              | FFT-FD            |
+| Europe/Frankfurt | FLOAT_RATE_DEPOSIT | *        | *           | *              | FFT-FL            |
+
+# JIRA-3322
+| Poland/Warsaw    | FIXED_RATE_DEPOSIT | *        | *           | *              | FOLDER
+| Poland/Warsaw    | FLOAT_RATE_DEPOSIT | *        | *           | *              | FOLDER
+
+| Europe/London    | *                  | *        | *           | *              | LDN_ALL
+| Europe/London    | *                  | EUR      | Mid         | *              | LDN_EUR  # London EUR
+| Europe/London    | *                  | USD      | Mid         | *              | LDN_USD  # London USD
+# London client monies: JIRA-4455
+| Europe/London    | *                  | *        | *           | LD-1234566     | LDN_CM
+| Europe/London    | *                  | *        | *           | LD-2234566     | LDN_CM
+| Europe/London    | *                  | *        | *           | LD-1234445     | LDN_CM            |
