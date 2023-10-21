@@ -11,18 +11,19 @@ TODO:
 ## tables-intellij-plugin
 ![image](https://github.com/Salauyou/config-tables/assets/7059765/0155210f-c413-44ca-ac2b-a7e8ad5c9a5b)
 
-Intellij language plugin supporing features:
-- Autoformatting
+Intellij language plugin supporting features:
+- Autoformatting: entered `|` is automatically adjusted by column with
+- Quick formatting by `Ctrl+Shift+L`
 - Autocompletion
 - Breadcrumbs
-- Paste from clipboard recognizes `\t` as cell separator
-- `Copy As Table` context menu action to copy into clipboard as html/tab-separated desktop-editor-friendly format
+- Paste from clipboard: if text contains `\t`, it is recognized as column separator
+- `Copy As Table` context menu action: copy into clipboard in html/tab-separated format, useful for desktop editors (e.g. Excel)
 
 TODO:
 - Better highlighting
-- Highlight errors, e.g. if number of cells in a row exceeds header
-- `Copy as SQL Select`—generates SQL select by header cells
-- `Copy as SQL Insert`—generates SQL insert for selected rows or entire table
+- Error highligting (e.g. exceessive cells in a row)
+- `Copy as SQL Select` to generate SQL SELECT by header cells
+- `Copy as SQL Insert` to generate SQL INSERT for rows
 
 ## config-tables-maven-plugin
 Maven plugin to generate SQL scripts given set of tables and metadata (TBD)
