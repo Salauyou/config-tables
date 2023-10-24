@@ -24,7 +24,7 @@ class TablesHighlighter : SyntaxHighlighterBase() {
     companion object {
         private val ATTRIBUTES: Map<IElementType, TextAttributesKey> = mapOf(
             TablesTokenTypes.PIPE to DefaultLanguageHighlighterColors.SEMICOLON,
-            TablesTokenTypes.TEXT to DefaultLanguageHighlighterColors.IDENTIFIER,
+            TablesTokenTypes.TEXT to DefaultLanguageHighlighterColors.STRING,
             TablesTokenTypes.QUOTED_TEXT to DefaultLanguageHighlighterColors.STRING,
             TablesTokenTypes.COMMENT to DefaultLanguageHighlighterColors.LINE_COMMENT,
             TokenType.BAD_CHARACTER to DefaultLanguageHighlighterColors.IDENTIFIER,

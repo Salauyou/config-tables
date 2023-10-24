@@ -7,6 +7,7 @@ import com.intellij.lang.WhitespacesAndCommentsBinder
 import com.intellij.psi.TokenType.BAD_CHARACTER
 import com.intellij.psi.TokenType.NEW_LINE_INDENT
 import com.intellij.psi.tree.IElementType
+import de.configtables.intellij.TablesElementType
 import de.configtables.intellij.TablesTokenTypes.PIPE
 import de.configtables.intellij.TablesTokenTypes.QUOTED_TEXT
 import de.configtables.intellij.TablesTokenTypes.TEXT
@@ -35,9 +36,7 @@ class TablesParser : PsiParser {
                     null -> rowMarker = mark().also {                // start new row
                         it.setCustomEdgeTokenBinders(null, rowTrailingWhitespaceBinder)
                     }
-                    else -> mark().done(TableElements.TEXT).also {   // empty cell value
-                        cellCount.incrementAndGet()
-                    }
+                    else -> mark().closeCell(TableElements.TEXT, header, cellCount, headerCellCount)  // empty cell value
                 }
                 advanceLexer()
             } else if (tokenType.let { it == TEXT || it == QUOTED_TEXT }) {
@@ -51,8 +50,7 @@ class TablesParser : PsiParser {
                         else -> TableElements.QUOTED_TEXT
                     }
                     advanceLexer()
-                    cellMarker.done(elementType)
-                    cellCount.incrementAndGet()
+                    cellMarker.closeCell(elementType, header, cellCount, headerCellCount)
                     // extra text in cell: error
                     while (tokenType.let { it != null && it != PIPE && it != NEW_LINE_INDENT }) {
                         consumeAsError("Expected line break or '|' after cell text")
@@ -77,19 +75,27 @@ class TablesParser : PsiParser {
     }
 
 
+    private fun PsiBuilder.Marker.closeCell(
+        elementType: TablesElementType, header: AtomicBoolean,
+        cellCount: AtomicInteger, headerCellCount: AtomicInteger,
+    ) {
+        cellCount.incrementAndGet()
+        if (header.get() || cellCount.get() <= headerCellCount.get()) {
+            done(elementType)
+        } else {
+            error("Extra cell")
+        }
+    }
+
     private fun PsiBuilder.Marker?.closeRowIfOpen(
-        header: AtomicBoolean, cellCount: AtomicInteger, headerCellCount: AtomicInteger,
+        header: AtomicBoolean, cellCount: AtomicInteger, headerCellCount: AtomicInteger
     ) {
         if (this != null) {
             if (header.get()) {
                 headerCellCount.set(cellCount.get())
-                done(TableElements.ROW)
                 header.set(false)
-            } else /*if (cellCount.get() == headerCellCount.get())*/ {
-                done(TableElements.ROW)
-            } /*else {
-                error("Number of row cells ($cellCount) must equal to header ($headerCellCount)")
-            }*/
+            }
+            done(TableElements.ROW)
             cellCount.set(0)
         }
     }
