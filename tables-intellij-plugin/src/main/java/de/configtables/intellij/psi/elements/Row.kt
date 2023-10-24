@@ -31,4 +31,6 @@ class Row(node: ASTNode) : ASTWrapperPsiElement(node) {
         }
         return index
     }
+
+    fun isHeader() = PsiTreeUtil.findChildOfType(parent, Row::class.java) === this
 }

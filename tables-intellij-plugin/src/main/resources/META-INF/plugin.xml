@@ -13,8 +13,9 @@
     <lang.formatter language="Tables" implementationClass="de.configtables.intellij.formatter.TablesFormattingModelBuilder"/>
     <completion.contributor language="Tables" implementationClass="de.configtables.intellij.editor.TablesCompletionContributor"/>
     <typedHandler implementation="de.configtables.intellij.editor.PipeTypedHandler"/>
-    <customPasteProvider implementation="de.configtables.intellij.editor.TablesPasteProvider" />
-    <breadcrumbsInfoProvider implementation="de.configtables.intellij.editor.TablesBreadcrumbsProvider" />
+    <customPasteProvider implementation="de.configtables.intellij.editor.TablesPasteProvider"/>
+    <breadcrumbsInfoProvider implementation="de.configtables.intellij.editor.TablesBreadcrumbsProvider"/>
+    <annotator language="Tables" implementationClass="de.configtables.intellij.editor.TablesAnnotator"/>
   </extensions>
 
   <actions>
