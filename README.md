@@ -9,7 +9,7 @@ TODO:
 - Multiple tables in one file
 
 ## tables-intellij-plugin
-![image](https://github.com/Salauyou/config-tables/assets/7059765/0155210f-c413-44ca-ac2b-a7e8ad5c9a5b)
+![image](https://github.com/Salauyou/config-tables/assets/7059765/3047ee31-90d4-4d4d-976c-3153609bc44b)
 
 Intellij language plugin supporting features:
 - Autoformatting: entered `|` is automatically adjusted by column with
