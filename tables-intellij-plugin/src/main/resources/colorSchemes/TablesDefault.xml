@@ -1,0 +1,21 @@
+<?xml version='1.0'?>
+<list>
+    <option name="TABLES_TEXT">
+        <value>
+            <option name="FONT_TYPE" value="0"/>
+            <option name="FOREGROUND" value="003060"/>
+        </value>
+    </option>
+    <option name="TABLES_QUOTED_TEXT">
+        <value>
+            <option name="FONT_TYPE" value="0"/>
+            <option name="FOREGROUND" value="007800"/>
+        </value>
+    </option>
+    <option name="TABLES_HEADER_TEXT">
+        <value>
+            <option name="FONT_TYPE" value="3"/>
+            <option name="FOREGROUND" value="DD5000"/>
+        </value>
+    </option>
+</list>

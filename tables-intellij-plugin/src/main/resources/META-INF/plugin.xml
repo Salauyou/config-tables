@@ -16,6 +16,9 @@
     <customPasteProvider implementation="de.configtables.intellij.editor.TablesPasteProvider"/>
     <breadcrumbsInfoProvider implementation="de.configtables.intellij.editor.TablesBreadcrumbsProvider"/>
     <annotator language="Tables" implementationClass="de.configtables.intellij.editor.TablesAnnotator"/>
+
+    <additionalTextAttributes scheme="Default" file="colorSchemes/TablesDefault.xml"/>
+    <additionalTextAttributes scheme="Darcula" file="colorSchemes/TablesDarcula.xml"/>
   </extensions>
 
   <actions>

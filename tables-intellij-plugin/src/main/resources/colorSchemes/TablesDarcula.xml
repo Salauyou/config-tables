@@ -1,0 +1,15 @@
+<?xml version='1.0'?>
+<list>
+    <option name="TABLES_QUOTED_TEXT">
+        <value>
+            <option name="FONT_TYPE" value="0"/>
+            <option name="FOREGROUND" value="70A060"/>
+        </value>
+    </option>
+    <option name="TABLES_HEADER_TEXT">
+        <value>
+            <option name="FONT_TYPE" value="3"/>
+            <option name="FOREGROUND" value="CC7832"/>
+        </value>
+    </option>
+</list>
