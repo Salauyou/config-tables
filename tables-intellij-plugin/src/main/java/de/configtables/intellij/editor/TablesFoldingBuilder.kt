@@ -9,6 +9,7 @@ import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.refactoring.suggested.endOffset
 import com.intellij.refactoring.suggested.startOffset
 import de.configtables.intellij.psi.TablesFile
+import de.configtables.intellij.psi.elements.Row
 import de.configtables.intellij.psi.elements.Table
 
 class TablesFoldingBuilder : FoldingBuilder {
@@ -24,26 +25,26 @@ class TablesFoldingBuilder : FoldingBuilder {
         if (rows.size < 3) {
             return emptyArray()
         }
-        var start = -1
-        var end = -1
+        var startRow: Row? = null
+        var endRow: Row? = null
         var key: String? = null
         var size = 0
         for (row in rows.subList(1, rows.size)) {
             val firstColumnText = row.getCells().firstOrNull()?.text ?: continue
             if (firstColumnText == key) {
+                endRow = row
                 ++size
-                end = row.endOffset
             } else {
                 if (size > 1) {
-                    descriptors.add(createFoldingDescriptor(node, start, end, key, size))
+                    descriptors.add(createFoldingDescriptor(startRow!!, endRow!!, key, size))
                 }
+                startRow = row
                 key = firstColumnText
-                start = row.startOffset
                 size = 1
             }
         }
         if (size > 1) {
-            descriptors.add(createFoldingDescriptor(node, start, end, key, size))
+            descriptors.add(createFoldingDescriptor(startRow!!, endRow!!, key, size))
         }
         return descriptors.toTypedArray()
     }
@@ -52,8 +53,8 @@ class TablesFoldingBuilder : FoldingBuilder {
 
     override fun isCollapsedByDefault(node: ASTNode) = false
 
-    private fun createFoldingDescriptor(node: ASTNode, start: Int, end: Int, key: String?, size: Int): FoldingDescriptor {
+    private fun createFoldingDescriptor(startRow: Row, endRow: Row, key: String?, size: Int): FoldingDescriptor {
         val placeholderText = "| ${key?.takeUnless { it.isEmpty() } ?: "<empty>"} ($size rows) "
-        return FoldingDescriptor(node, TextRange.create(start, end), null, placeholderText)
+        return FoldingDescriptor(startRow.node, TextRange.create(startRow.startOffset, endRow.endOffset), null, placeholderText)
     }
 }
