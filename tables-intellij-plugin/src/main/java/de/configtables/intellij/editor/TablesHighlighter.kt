@@ -36,7 +36,7 @@ class TablesHighlighter : SyntaxHighlighterBase() {
         )
 
         val TABLES_HEADER_TEXT = TextAttributesKey.createTextAttributesKey(
-            TABLES_HEADER_TEXT_ID, DefaultLanguageHighlighterColors.STRING
+            TABLES_HEADER_TEXT_ID, DefaultLanguageHighlighterColors.CONSTANT
         )
 
         private val ATTRIBUTES: Map<IElementType, TextAttributesKey> = mapOf(
