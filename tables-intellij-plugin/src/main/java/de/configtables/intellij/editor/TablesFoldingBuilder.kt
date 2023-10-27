@@ -22,29 +22,30 @@ class TablesFoldingBuilder : FoldingBuilder {
         }
         val descriptors = mutableListOf<FoldingDescriptor>()
         val rows = table.getRows()
-        if (rows.size < 3) {
+        if (rows.size < 2) {
             return emptyArray()
         }
-        var startRow: Row? = null
-        var endRow: Row? = null
-        var key: String? = null
-        var size = 0
-        for (row in rows.subList(1, rows.size)) {
-            val firstColumnText = row.getCells().firstOrNull()?.text ?: continue
-            if (firstColumnText == key) {
+        var startRow = rows[1]
+        var endRow = startRow
+        var key = startRow.firstCell()
+        var size = 1
+        for (row in rows.subList(2, rows.size)) {
+            val rowKey = row.firstCell()
+            if (key != null && rowKey == key) {
                 endRow = row
                 ++size
             } else {
-                if (size > 1) {
-                    descriptors.add(createFoldingDescriptor(startRow!!, endRow!!, key, size))
+                if (key != null) {
+                    descriptors.add(createFoldingDescriptor(startRow, endRow, key, size))
                 }
                 startRow = row
-                key = firstColumnText
+                endRow = row
+                key = rowKey
                 size = 1
             }
         }
-        if (size > 1) {
-            descriptors.add(createFoldingDescriptor(startRow!!, endRow!!, key, size))
+        if (key != null) {
+            descriptors.add(createFoldingDescriptor(startRow, endRow, key, size))
         }
         return descriptors.toTypedArray()
     }
@@ -53,8 +54,14 @@ class TablesFoldingBuilder : FoldingBuilder {
 
     override fun isCollapsedByDefault(node: ASTNode) = false
 
-    private fun createFoldingDescriptor(startRow: Row, endRow: Row, key: String?, size: Int): FoldingDescriptor {
-        val placeholderText = "| ${key?.takeUnless { it.isEmpty() } ?: "<empty>"} ($size rows) "
+    private fun Row.firstCell() = getCells().firstOrNull()?.text
+
+    private fun createFoldingDescriptor(startRow: Row, endRow: Row, key: String, size: Int): FoldingDescriptor {
+        val rows = when (size) {
+            1 -> "1 row"
+            else -> "$size rows"
+        }
+        val placeholderText = "| ${key.takeUnless { it.isEmpty() } ?: "<empty>"} · $rows "
         return FoldingDescriptor(startRow.node, TextRange.create(startRow.startOffset, endRow.endOffset), null, placeholderText)
     }
 }
