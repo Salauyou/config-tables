@@ -16,6 +16,7 @@ Intellij language plugin supporting features:
 - Quick formatting by `Ctrl+Shift+L`
 - Autocompletion
 - Breadcrumbs
+- Folding: rows are grouped by first column value
 - Paste from clipboard: if text contains `\t`, it is recognized as column separator
 - `Copy As Table` context menu action: copy into clipboard in html/tab-separated format, useful for desktop editors (e.g. Excel)
 
