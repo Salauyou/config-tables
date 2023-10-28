@@ -1,12 +1,6 @@
 # config-tables
 
-A set of artifacts to maintain pipe-separated tables. Yet another attempt to store relational data in codebase in human readable and git-frienly format.
-## common
-Lexer + standalone parser (TBD) for `.table` files
-
-TODO: 
-- Inner references for long cell values
-- Multiple tables in one file
+Yet another attempt to store table-like data in codebase in human readable and git-frienly format.
 
 ## tables-intellij-plugin
 ![image](https://github.com/Salauyou/config-tables/assets/7059765/3047ee31-90d4-4d4d-976c-3153609bc44b)
@@ -24,5 +18,12 @@ TODO:
 - `Copy as SQL Select` to generate SQL SELECT by header
 - `Copy as SQL Insert` to generate SQL INSERT for selected rows
 
+## common
+Lexer + standalone parser (TBD) for `.table` files
+
+TODO: 
+- Inner references for long cell values
+- Multiple tables in one file
+- 
 ## config-tables-maven-plugin
 Maven plugin to generate SQL scripts given set of tables and metadata (TBD)
