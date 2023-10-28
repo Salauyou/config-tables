@@ -1,6 +1,6 @@
 # config-tables
 
-Yet another attempt to store table-like data in codebase in human readable and git-frienly format.
+Yet another attempt to store relational data in codebase in human-readable and git-friendly format.
 
 ## tables-intellij-plugin
 ![image](https://github.com/Salauyou/config-tables/assets/7059765/3047ee31-90d4-4d4d-976c-3153609bc44b)
