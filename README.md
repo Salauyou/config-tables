@@ -18,12 +18,12 @@ TODO:
 - `Copy as SQL Select` to generate SQL SELECT by header
 - `Copy as SQL Insert` to generate SQL INSERT for selected rows
 
-## common
-Lexer + standalone parser (TBD) for `.table` files
+## common (TBD)
+Lexer + standalone parser for `.table` files
 
 TODO: 
 - Inner references for long cell values
 - Multiple tables in one file
 - 
-## config-tables-maven-plugin
-Maven plugin to generate SQL scripts given set of tables and metadata (TBD)
+## config-tables-maven-plugin (TBD)
+Maven plugin to generate SQL scripts from set of tables and metadata
