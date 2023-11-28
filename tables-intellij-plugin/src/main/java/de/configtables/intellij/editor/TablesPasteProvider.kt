@@ -11,6 +11,7 @@ import com.intellij.openapi.ide.CopyPasteManager
 import com.intellij.psi.PsiWhiteSpace
 import com.intellij.psi.codeStyle.CodeStyleManager
 import com.intellij.refactoring.suggested.endOffset
+import de.configtables.intellij.TablesFileType
 import de.configtables.intellij.psi.elements.TableElements.Companion.isPipe
 import groovy.json.StringEscapeUtils
 import java.awt.datatransfer.DataFlavor
@@ -92,7 +93,8 @@ class TablesPasteProvider : PasteProvider {
     override fun isPastePossible(dataContext: DataContext) = true
 
     override fun isPasteEnabled(dataContext: DataContext): Boolean {
-       return CopyPasteManager.getInstance().getContents<String>(DataFlavor.plainTextFlavor) != null
+       return CommonDataKeys.PSI_FILE.getData(dataContext)?.fileType == TablesFileType.INSTANCE
+           && CopyPasteManager.getInstance().getContents<String>(DataFlavor.plainTextFlavor) != null
     }
 
     private fun String.quoted() = '\"' + StringEscapeUtils.escapeJava(this) + '\"'
