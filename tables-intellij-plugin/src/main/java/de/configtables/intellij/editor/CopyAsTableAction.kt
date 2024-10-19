@@ -1,5 +1,6 @@
 package de.configtables.intellij.editor
 
+import com.google.common.escape.Escaper
 import com.google.common.html.HtmlEscapers
 import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
@@ -73,6 +74,6 @@ class CopyAsTableAction : AnAction() {
 
     companion object {
         val WS_REGEX = Regex("\\s+")
-        val HTML_ESCAPER = HtmlEscapers.htmlEscaper()
+        val HTML_ESCAPER: Escaper = HtmlEscapers.htmlEscaper()
     }
 }

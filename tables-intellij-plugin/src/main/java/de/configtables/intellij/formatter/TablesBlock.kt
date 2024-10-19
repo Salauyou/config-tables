@@ -62,13 +62,8 @@ class TablesBlock(
         val block2 = child2 as ASTBlock
         val node1 = block1.node
         val node2 = block2.node
-        val parent1 = if (node1!!.treeParent != null) node1.treeParent.elementType else null
-        val elementType1 = node1.elementType
+        val elementType1 = node1!!.elementType
         val elementType2 = node2!!.elementType
-
-//        if (elementType2 == TableTokenTypes.COMMENT) {
-//            return Spacing.getReadOnlySpacing()
-//        }
         if (elementType1 == TablesTokenTypes.PIPE && elementType2.isText()) {
             return Spacing.createSpacing(1, 1, 0, false, 0)
         }

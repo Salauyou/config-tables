@@ -20,7 +20,7 @@ class TablesFileType private constructor() : LanguageFileType(TablesLanguage.INS
     }
 
     override fun getIcon(): Icon {
-        return IconManager.getInstance().getIcon("file-icon.svg", this.javaClass)
+        return IconManager.getInstance().getIcon("file-icon.svg", this.javaClass.classLoader)
     }
 
     override fun getCharset(file: VirtualFile, content: ByteArray): String? {
